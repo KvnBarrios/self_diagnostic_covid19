@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/screens/first_login.dart';
 import 'package:teste/screens/forms.dart';
 import 'package:teste/widgets/input_field.dart';
 
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.blueAccent, Colors.blue])),
+                    colors: [Colors.black54, Color.fromRGBO(15, 26, 74,1)])),
           ),
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -96,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         FlatButton(
                           child: Text("Forgot you password?"),
                           textColor: Colors.black,
+                          onPressed: (){},
                         ),
                         SizedBox(
                           height: 60,
@@ -103,8 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.0),
-                                side: BorderSide(color: Colors.blueAccent)),
-                            color: Colors.blueAccent,
+                                side: BorderSide(color: Color.fromRGBO(15, 26, 74,1))),
+                            color: Color.fromRGBO(15, 26, 74,1),
                             child: Text("Entrar"),
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -116,6 +118,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             textColor: Colors.white,
                           ),
                         ),
+                    FlatButton(
+                      child: Text("Primeiro acesso? clique aqui"),
+                      textColor: Colors.black,
+                      onPressed: (){
+                        Navigator.push (
+                          context,
+                          MaterialPageRoute(builder: (context) => FirstLoginForm()),
+                        );
+                      },
+                    ),
                         SizedBox(
                           height: 20,
                         )
