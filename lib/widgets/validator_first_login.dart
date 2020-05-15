@@ -86,6 +86,7 @@ class _ValidatorState extends State<Validator> {
               obscureText: true,
               keyboardType: TextInputType.phone,
               controller: minhaSenha1,
+              validator: _validarSenha,
             ),
           ),
         ),
@@ -129,15 +130,7 @@ class _ValidatorState extends State<Validator> {
               obscureText: true,
               keyboardType: TextInputType.phone,
               controller: minhaSenha2,
-              validator:(text){
-                if(minhaSenha1.text == null){
-                  return ("Insira uma senha");
-                }
-                if(minhaSenha1.text != minhaSenha2.text){
-                  return ("Senhas incompativeis");
-                }
-                return null;
-              },
+              validator:_validarSenha,
             ),
           ),
         ),
@@ -167,6 +160,19 @@ class _ValidatorState extends State<Validator> {
         height: 20,
       )
     ]);
+  }
+
+
+  String _validarSenha(text){
+    if(minhaSenha1.text != minhaSenha2.text){
+      return ("Senhas incompativeis");
+    }
+    if(minhaSenha2.text == null  || minhaSenha2.text == null){
+      return ("Insira uma senha");
+    }
+    return null;
+
+
   }
 
   String _validarCpf(value) {
