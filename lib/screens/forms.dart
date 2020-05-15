@@ -89,14 +89,23 @@ class _WorkerFormState extends State<WorkerForm> {
                         showDialog(
                           context: context,builder: (_) => NetworkGiffyDialog(
                           image: Image.asset("images/thumbs-up.gif",),
-                          title: Text('Olá, Kevin! Seu diagnóstico foi enviado.',
+                          title: Text('Olá, Kevin! Seu diagnóstico esta pendente!',
                             style: TextStyle(
                                 fontSize: 22.0, fontWeight: FontWeight.w600, ),
                             textAlign: TextAlign.center,
                           ),
-                          description: Text("Obrigado por fazer sua parte para um Brasil melhor!",
+                          description: Text("Confirme que você sente: Febre",
                             textAlign: TextAlign.center,
                             style: TextStyle(),
+                          ),
+                          buttonOkText: Text("Confirmar",
+                          style: TextStyle(
+                            color: Colors.white
+                          ),),
+                          buttonCancelText: Text("Editar",
+                            style: TextStyle(
+                              color: Colors.white
+                            ),
                           ),
                           entryAnimation: EntryAnimation.TOP,
                           onOkButtonPressed: () {

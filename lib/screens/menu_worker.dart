@@ -79,10 +79,12 @@ class _MenuWorkerState extends State<MenuWorker> {
                                    ),
                                    textAlign: TextAlign.center,
                                  ),
-                                 Container(
-                                   child: Image(
-                                     image:AssetImage("images/triagem.png"),
-                                     height: 225,
+                                 Center(
+                                   child: Container(
+                                     child: Image(
+                                       image:AssetImage("images/triagem.png"),
+                                       height: 225,
+                                     ),
                                    ),
                                  ),
                                ],
