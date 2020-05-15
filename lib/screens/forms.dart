@@ -4,6 +4,8 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:teste/widgets/sick_check.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
+
+import 'menu_worker.dart';
 class WorkerForm extends StatefulWidget {
   @override
   _WorkerFormState createState() => _WorkerFormState();
@@ -17,7 +19,14 @@ class _WorkerFormState extends State<WorkerForm> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.arrow_back),
+          leading: FlatButton(
+            child: Icon((Icons.arrow_back),color: Colors.white,
+            ),
+            onPressed: (){
+              Navigator.pushReplacement(context, MaterialPageRoute
+                (builder: (context) => MenuWorker()));
+            },
+          ),
           actions: <Widget>[Icon(Icons.report_problem)],
           backgroundColor: Color.fromRGBO(15, 26, 74,1),
           title: Text("Relatorio de triagem diaria"),
@@ -90,7 +99,11 @@ class _WorkerFormState extends State<WorkerForm> {
                             style: TextStyle(),
                           ),
                           entryAnimation: EntryAnimation.TOP,
-                          onOkButtonPressed: () {},
+                          onOkButtonPressed: () {
+                            Navigator.push(context, MaterialPageRoute
+                              (builder: (context) => MenuWorker(),maintainState: false));
+
+                          },
                         )
                         );
                       },

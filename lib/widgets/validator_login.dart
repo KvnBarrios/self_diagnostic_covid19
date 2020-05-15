@@ -1,8 +1,8 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
-import 'package:teste/screens/forms.dart';
 import 'package:teste/screens/login_screen.dart';
+import 'package:teste/screens/menu_worker.dart';
 
 import 'input_field.dart';
 
@@ -16,6 +16,7 @@ class Validator_login extends StatefulWidget {
 class _Validator_loginState extends State<Validator_login> {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
+  final minhaSenha1 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _Validator_loginState extends State<Validator_login> {
               child: InputField(
                 icon: Icons.account_circle,
                 obscure: false,
-                hint: "Worker",
+                hint: "CPF",
                 validador: _validarCpf,
               ),
             ),
@@ -55,7 +56,10 @@ class _Validator_loginState extends State<Validator_login> {
             height: 20,
           ),
           Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(
+              left: 10,
+              right: 10,
+            ),
             decoration: BoxDecoration(
                 color: Colors.grey[100],
                 shape: BoxShape.rectangle,
@@ -64,10 +68,32 @@ class _Validator_loginState extends State<Validator_login> {
                     topRight: Radius.circular(40.0),
                     bottomLeft: Radius.circular(40.0),
                     bottomRight: Radius.circular(40.0))),
-            child: InputField(
-              icon: Icons.lock,
-              obscure: true,
-              hint: "Password",
+            child: Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
+                child: TextFormField(
+                  buildCounter: (BuildContext context,
+                      {int currentLength, int maxLength, bool isFocused}) =>
+                  null,
+                  maxLength: 11,
+                  maxLengthEnforced: true,
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
+                      hintText: "Sua senha",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey[100])),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey[100])),
+                      contentPadding:
+                      EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
+                  style: TextStyle(color: Colors.grey),
+                  obscureText: true,
+                  keyboardType: TextInputType.phone,
+                  controller: minhaSenha1,
+                  validator: _validarSenha,
+                ),
+              ),
             ),
           ),
           SizedBox(
@@ -132,6 +158,16 @@ class _Validator_loginState extends State<Validator_login> {
     return null;
   }
 
+  String _validarSenha(text){
+    if (minhaSenha1.text.isEmpty == true )
+    {
+      return ("Digite uma senha");
+    }
+    return null;
+
+  }
+
+
 
 
 
@@ -140,10 +176,10 @@ class _Validator_loginState extends State<Validator_login> {
     if (_key.currentState.validate()) {
       // Sem erros na validação
       _key.currentState.save();
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => WorkerForm()),
+            builder: (context) => MenuWorker()),
       );
     } else {
       // erro de validação

@@ -167,11 +167,10 @@ class _ValidatorState extends State<Validator> {
     if(minhaSenha1.text != minhaSenha2.text){
       return ("Senhas incompativeis");
     }
-    if(minhaSenha2.text == null  || minhaSenha2.text == null){
-      return ("Insira uma senha");
+    if (minhaSenha1.text.isEmpty == true || minhaSenha2.text.isEmpty == true ){
+      return ("Digite uma senha");
     }
     return null;
-
 
   }
 
