@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/screens/first_login.dart';
-import 'package:teste/screens/forms.dart';
-import 'package:teste/widgets/input_field.dart';
-
+import 'package:teste/widgets/validator_login.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.black54, Color.fromRGBO(15, 26, 74,1)])),
+                    colors: [Colors.black54, Color.fromRGBO(15, 26, 74, 1)])),
           ),
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -51,83 +49,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: 10,
-                            right: 10,
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.grey[100],
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                  bottomLeft: Radius.circular(40.0),
-                                  bottomRight: Radius.circular(40.0))),
-                          child: Center(
-                            child: InputField(
-                              icon: Icons.account_circle,
-                              obscure: false,
-                              hint: "Worker",
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.grey[100],
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(40.0),
-                                  topRight: Radius.circular(40.0),
-                                  bottomLeft: Radius.circular(40.0),
-                                  bottomRight: Radius.circular(40.0))),
-                          child: InputField(
-                            icon: Icons.lock,
-                            obscure: true,
-                            hint: "Password",
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
+                        Validator_login(),
                         FlatButton(
-                          child: Text("Forgot you password?"),
+                          child: Text("Primeiro acesso? clique aqui"),
                           textColor: Colors.black,
-                          onPressed: (){},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FirstLoginForm()),
+                            );
+                          },
                         ),
-                        SizedBox(
-                          height: 60,
-                          width: 150,
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                                side: BorderSide(color: Color.fromRGBO(15, 26, 74,1))),
-                            color: Color.fromRGBO(15, 26, 74,1),
-                            child: Text("Entrar"),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => WorkerForm()),
-                              );
-                            },
-                            textColor: Colors.white,
-                          ),
-                        ),
-                    FlatButton(
-                      child: Text("Primeiro acesso? clique aqui"),
-                      textColor: Colors.black,
-                      onPressed: (){
-                        Navigator.push (
-                          context,
-                          MaterialPageRoute(builder: (context) => FirstLoginForm()),
-                        );
-                      },
-                    ),
                         SizedBox(
                           height: 20,
                         )
