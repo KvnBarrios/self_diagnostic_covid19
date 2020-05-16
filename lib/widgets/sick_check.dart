@@ -4,11 +4,11 @@ class SickForm extends StatefulWidget {
   final IconData icon;
   final String hint;
   final String subhint;
-  SickForm({this.icon, this.hint, this.subhint  });
-
+  SickForm({this.icon, this.hint, this.subhint });
 
   @override
   _SickFormState createState() => _SickFormState();
+
 }
 
 class _SickFormState extends State<SickForm> {
@@ -45,6 +45,7 @@ class _SickFormState extends State<SickForm> {
               ),),
             ),
             secondary: Icon(widget.icon, size: 25,color: Colors.black,),
+
             value: _isSelected,
             subtitle: Center(child: Text(widget.subhint)),
             activeColor: Colors.blue ,
@@ -53,6 +54,7 @@ class _SickFormState extends State<SickForm> {
                 _isSelected = newValue;
               });
               print (_isSelected);
+              print (widget.hint);
             },
           ),
         ),
