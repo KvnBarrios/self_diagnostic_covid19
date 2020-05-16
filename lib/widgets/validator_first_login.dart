@@ -1,6 +1,7 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:teste/screens/login_screen.dart';
 
@@ -9,6 +10,7 @@ import 'input_field.dart';
 class Validator extends StatefulWidget {
   @override
   _ValidatorState createState() => _ValidatorState();
+
 }
 
 class _ValidatorState extends State<Validator> {
@@ -16,11 +18,28 @@ class _ValidatorState extends State<Validator> {
   bool _validate = false;
   final minhaSenha1 = TextEditingController();
   final minhaSenha2 = TextEditingController();
+  bool _isHidden = true;
+  bool _isHidden2 = true;
+  void _toogleVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+  void _toogleVisibility2() {
+    setState(() {
+      _isHidden2 = !_isHidden2;
+    });
+  }
 
-  @override
+
+
+    @override
   Widget build(BuildContext context) {
     return new Form(key: _key, autovalidate: _validate, child: _formUI());
+
   }
+
+
 
   Widget _formUI() {
     return Column(children: <Widget>[
@@ -70,11 +89,19 @@ class _ValidatorState extends State<Validator> {
               buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
-              maxLength: 11,
+              maxLength: 6,
               maxLengthEnforced: true,
+              inputFormatters:  <TextInputFormatter>[
+                WhitelistingTextInputFormatter.digitsOnly
+              ],
               decoration: InputDecoration(
                   icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
                   hintText: "Sua senha",
+                  suffixIcon: IconButton(
+                    onPressed: _toogleVisibility,
+                    icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                    alignment: Alignment.topCenter,
+                  ) ,
                   hintStyle: TextStyle(color: Colors.grey),
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey[100])),
@@ -83,7 +110,7 @@ class _ValidatorState extends State<Validator> {
                   contentPadding:
                       EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
               style: TextStyle(color: Colors.grey),
-              obscureText: true,
+              obscureText: _isHidden,
               keyboardType: TextInputType.phone,
               controller: minhaSenha1,
               validator: _validarSenha,
@@ -114,10 +141,18 @@ class _ValidatorState extends State<Validator> {
               buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
-              maxLength: 11,
+              maxLength: 6,
               maxLengthEnforced: true,
+              inputFormatters:  <TextInputFormatter>[
+                WhitelistingTextInputFormatter.digitsOnly
+              ],
               decoration: InputDecoration(
                   icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
+                  suffixIcon: IconButton(
+                    onPressed: _toogleVisibility2,
+                    icon: _isHidden2 ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                    alignment: Alignment.topCenter,
+                  ) ,
                   hintText: "Repita a sua senha",
                   hintStyle: TextStyle(color: Colors.grey),
                   focusedBorder: UnderlineInputBorder(
@@ -127,10 +162,11 @@ class _ValidatorState extends State<Validator> {
                   contentPadding:
                       EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
               style: TextStyle(color: Colors.grey),
-              obscureText: true,
+              obscureText: _isHidden2,
               keyboardType: TextInputType.phone,
               controller: minhaSenha2,
               validator:_validarSenha,
+
             ),
           ),
         ),
@@ -191,6 +227,8 @@ class _ValidatorState extends State<Validator> {
   }
 
 
+
+
   _sendForm() {
     if (_key.currentState.validate()) {
       // Sem erros na validação
@@ -225,3 +263,4 @@ class _ValidatorState extends State<Validator> {
     }
   }
 }
+

@@ -1,5 +1,6 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:teste/screens/login_screen.dart';
 import 'package:teste/screens/menu_worker.dart';
@@ -17,7 +18,12 @@ class _Validator_loginState extends State<Validator_login> {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
   final minhaSenha1 = TextEditingController();
-
+  bool _isHidden = true;
+  void _toogleVisibility(){
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return new Form(
@@ -50,6 +56,7 @@ class _Validator_loginState extends State<Validator_login> {
                 hint: "CPF",
                 validador: _validarCpf,
                 Type: TextInputType.phone ,
+                max: 11,
               ),
             ),
           ),
@@ -76,11 +83,18 @@ class _Validator_loginState extends State<Validator_login> {
                   buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
-                  maxLength: 11,
-                  maxLengthEnforced: true,
+                  maxLength: 6,
+                  inputFormatters: <TextInputFormatter>[
+                    WhitelistingTextInputFormatter.digitsOnly
+                  ],
                   decoration: InputDecoration(
                       icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
                       hintText: "Sua senha",
+                      suffixIcon: IconButton(
+                          onPressed: _toogleVisibility,
+                          icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                        alignment: Alignment.topCenter,
+                      ) ,
                       hintStyle: TextStyle(color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey[100])),
@@ -89,9 +103,10 @@ class _Validator_loginState extends State<Validator_login> {
                       contentPadding:
                       EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
                   style: TextStyle(color: Colors.grey),
-                  obscureText: true,
+                  obscureText: _isHidden,
                   controller: minhaSenha1,
                   validator: _validarSenha,
+
                 ),
               ),
             ),

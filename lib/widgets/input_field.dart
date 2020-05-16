@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputField extends StatelessWidget {
   final IconData icon;
@@ -15,8 +16,12 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
       child: TextFormField(
+        inputFormatters: <TextInputFormatter>[
+          WhitelistingTextInputFormatter.digitsOnly
+        ],
         buildCounter: (BuildContext context, { int currentLength, int maxLength, bool isFocused }) => null,
         maxLength: 11,
         maxLengthEnforced: true,
