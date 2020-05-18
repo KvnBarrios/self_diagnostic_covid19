@@ -1,8 +1,6 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
-import 'package:teste/screens/login_screen.dart';
 import 'package:teste/screens/menu_worker.dart';
 
 import 'input_field.dart';
@@ -84,9 +82,11 @@ class _Validator_loginState extends State<Validator_login> {
                       {int currentLength, int maxLength, bool isFocused}) =>
                   null,
                   maxLength: 6,
+                  keyboardType:TextInputType.phone,
                   inputFormatters: <TextInputFormatter>[
                     WhitelistingTextInputFormatter.digitsOnly
                   ],
+
                   decoration: InputDecoration(
                       icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
                       hintText: "Sua senha",
@@ -119,23 +119,80 @@ class _Validator_loginState extends State<Validator_login> {
             textColor: Colors.black,
             onPressed: (){
               showDialog(
-                  context: context,builder: (_) => NetworkGiffyDialog(
-                image: Image.asset("images/help.gif",),
-                title: Text('Em caso de perca de senha contate sua empresa',
-                  style: TextStyle(
-                    fontSize: 22.0, fontWeight: FontWeight.w600, ),
-                  textAlign: TextAlign.center,
-                ),
-                description: Text("O gestor saberá como dar proseguimento!. Obrigado",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(),
-                ),
-                entryAnimation: EntryAnimation.TOP,
-                onOkButtonPressed: () {
-                  Navigator.push(context, MaterialPageRoute
-                    (builder: (context) => LoginScreen()));
-                },
-              )
+
+                context: context, builder: (context) =>
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Dialog(
+                      elevation: 0.0,
+                      backgroundColor: Colors.transparent,
+                      child: Container(
+                        margin: EdgeInsets.only(top: 100),
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.6,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * (0.8),
+                        child: Material(
+                          type: MaterialType.card,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  25)),
+                          elevation: Theme
+                              .of(context)
+                              .dialogTheme
+                              .elevation ?? 24.0,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: 25, right: 25),
+                                  child: Image.asset(
+                                      "images/help.gif",fit: BoxFit.fitWidth,),
+                                ),
+                                Text(
+                                  'Em caso de perca de senha, comunique seu gestor!.',
+                                  style: TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w600,),
+                                  textAlign: TextAlign.center,
+                                ),
+
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(height: 30,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    RaisedButton(
+                                      color: Colors.green,
+                                      onPressed: (){
+                                        Navigator.pop(context);
+                                      },
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(9.0),
+                                      ),
+                                      child: Text('Voltar', style: TextStyle(fontSize: 15,color: Colors.white)),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
               );
             },
           ),

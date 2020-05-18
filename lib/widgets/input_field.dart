@@ -17,7 +17,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
+      margin: EdgeInsets.only(top: 0, left: 30, right: 30, bottom: 0),
       child: TextFormField(
         inputFormatters: <TextInputFormatter>[
           WhitelistingTextInputFormatter.digitsOnly

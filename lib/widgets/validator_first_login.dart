@@ -241,10 +241,6 @@ class _ValidatorState extends State<Validator> {
             fontSize: 22.0, fontWeight: FontWeight.w600, ),
           textAlign: TextAlign.center,
         ),
-        description: Text("Agora é só entrar na sua conta!",
-          textAlign: TextAlign.center,
-          style: TextStyle(),
-        ),
         entryAnimation: EntryAnimation.TOP,
         onOkButtonPressed: () {
           Navigator.push(

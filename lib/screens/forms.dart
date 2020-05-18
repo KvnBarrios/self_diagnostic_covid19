@@ -1,16 +1,20 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
+
 
 import 'menu_worker.dart';
 class WorkerForm extends StatefulWidget {
+
   @override
   _WorkerFormState createState() => _WorkerFormState();
 
+
 }
-@override
+
+
 bool _isSelected = false;
 bool _isSelected2 = false;
 bool _isSelected3 = false;
@@ -19,10 +23,21 @@ bool _isSelected5 = false;
 bool _isSelected6 = false;
 bool _isSelected7 = false;
 
+
 class _WorkerFormState extends State<WorkerForm> {
 
+  void reset() {
+    setState(() {
+      _isSelected = false;
+      _isSelected2 = false;
+      _isSelected3 = false;
+      _isSelected4 = false;
+      _isSelected5 = false;
+      _isSelected6 = false;
+      _isSelected7 = false;
+    });
+  }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -42,8 +57,8 @@ class _WorkerFormState extends State<WorkerForm> {
           scrollDirection: Axis.vertical,
           child: Container(
             margin: EdgeInsets.only(
-              left: 23,
-              right: 23
+                left: 23,
+                right: 23
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +82,7 @@ class _WorkerFormState extends State<WorkerForm> {
                     child: Text(
                       "Você apresenta (ou) apresentou nos ultimos 14 dias?",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ),
                 ),
@@ -366,10 +381,9 @@ class _WorkerFormState extends State<WorkerForm> {
                         ),
                         secondary: Icon(
                           FontAwesomeIcons.diagnoses, size: 25, color: Colors.black,),
-
-                        value: _isSelected7,
                         subtitle: Center(child: Text("Fadiga ou dor muscular")),
                         activeColor: Colors.blue,
+                        value: _isSelected7,
                         onChanged: (bool newValue) {
                           setState(() {
                             _isSelected7 = newValue;
@@ -396,7 +410,7 @@ class _WorkerFormState extends State<WorkerForm> {
 
                 Center(
                   child: SizedBox(
-                    height: 60,
+                    height: 70,
                     width: 150,
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -404,34 +418,103 @@ class _WorkerFormState extends State<WorkerForm> {
                           side: BorderSide(color: Color.fromRGBO(15, 26, 74,1))),
                       color: Color.fromRGBO(15, 26, 74,1),
                       child: Text("Enviar"),
-                      onPressed: () {/*
+                      onPressed: () {
                         showDialog(
-                          context: context,builder: (_) => Container(
-                          color: Colors.white,
+                          context: context, builder: (context) =>
+                            SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Dialog(
+                                  elevation: 0.0,
+                                  backgroundColor: Colors.transparent,
+                                  child: Container(
+                                    margin: EdgeInsets.only(top: 25),
+                                    height: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height * 0.8,
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width * (0.8),
+                                    child: Material(
+                                      type: MaterialType.card,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              25)),
+                                      elevation: Theme
+                                          .of(context)
+                                          .dialogTheme
+                                          .elevation ?? 24.0,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Column(
+                                          children: <Widget>[
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  left: 25, right: 25),
+                                              child: Image.asset(
+                                                  "images/thumbs-up.gif"),
+                                            ),
+                                            Text(
+                                              'Olá, Kevin! Seu diagnóstico esta pendente!',
+                                              style: TextStyle(
+                                                fontSize: 22.0,
+                                                fontWeight: FontWeight.w600,),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            VerificaSintoma(),
+                                            SizedBox(height: 30,),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
 
-                          margin: EdgeInsets.only(left: 75, top: 150,bottom: 150,right: 75),
-                          child: Column(
-                            children: <Widget>[
-                              VerificaSintoma(
-                              )
-                            ],
-                          ),
-                        )
+                                              children: <Widget>[
+                                                RaisedButton(
+                                                  color: Colors.red,
+                                                  onPressed: (){
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(9.0),
+                                                  ),
+                                                  child: Text('Editar', style: TextStyle(fontSize: 15, color: Colors.white)),
+                                                ),
+                                                SizedBox(
+                                                  width: 30,
+                                                ),
+                                                RaisedButton(
+                                                  color: Colors.green,
+                                                  onPressed: (){
+                                                    reset();
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MenuWorker()));
+                                                  },
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(9.0),
+                                                  ),
+                                                  child: Text('Confirmar', style: TextStyle(fontSize: 15,color: Colors.white)),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                         );
-                        */
 
 
-
-
-
-
-
-
-
-
-                        //showAlertDialog1(context);
+                        /*
                         showDialog(
-                          context: context,builder: (_) => NetworkGiffyDialog(
+                          context: context,builder: (context) => NetworkGiffyDialog(
                           image: Image.asset("images/thumbs-up.gif",),
                           title: Text('Olá, Kevin! Seu diagnóstico esta pendente!',
                             style: TextStyle(
@@ -450,12 +533,11 @@ class _WorkerFormState extends State<WorkerForm> {
                           ),
                           entryAnimation: EntryAnimation.TOP,
                           onOkButtonPressed: () {
-                            Navigator.push(context, MaterialPageRoute
-                              (builder: (context) => MenuWorker()));
-
+                            reset();
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MenuWorker()));
                           },
                         )
-                        );
+                        );*/
                       },
                       textColor: Colors.white,
                     ),
@@ -516,3 +598,5 @@ Text VerificaSintoma(){
     fontSize: 15, color: Colors.black, fontWeight: FontWeight.w600,
   ), textAlign: TextAlign.left,);
 }
+
+
