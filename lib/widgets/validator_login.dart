@@ -1,4 +1,5 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:teste/screens/menu_worker.dart';
@@ -17,6 +18,7 @@ class _Validator_loginState extends State<Validator_login> {
   bool _validate = false;
   final minhaSenha1 = TextEditingController();
   bool _isHidden = true;
+
   void _toogleVisibility(){
     setState(() {
       _isHidden = !_isHidden;
@@ -30,6 +32,7 @@ class _Validator_loginState extends State<Validator_login> {
         child: _formUI()
     );
   }
+  
 
   Widget _formUI() {
     return Column(
@@ -49,9 +52,9 @@ class _Validator_loginState extends State<Validator_login> {
                     bottomRight: Radius.circular(40.0))),
             child: Center(
               child: InputField(
+                hint: "CPF",
                 icon: Icons.account_circle,
                 obscure: false,
-                hint: "CPF",
                 validador: _validarCpf,
                 Type: TextInputType.phone ,
                 max: 11,
@@ -76,7 +79,7 @@ class _Validator_loginState extends State<Validator_login> {
                     bottomRight: Radius.circular(40.0))),
             child: Center(
               child: Container(
-                margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
+                margin: EdgeInsets.only(top: 10, left: 20, right: 10, bottom: 0),
                 child: TextFormField(
                   buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
@@ -91,17 +94,16 @@ class _Validator_loginState extends State<Validator_login> {
                       icon: Icon(Icons.lock_outline, color: Colors.blueGrey),
                       hintText: "Sua senha",
                       suffixIcon: IconButton(
-                          onPressed: _toogleVisibility,
-                          icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
-                        alignment: Alignment.topCenter,
-                      ) ,
+                            onPressed: _toogleVisibility,
+                            icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                          alignment: Alignment.topCenter,
+                        ),
                       hintStyle: TextStyle(color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey[100])),
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey[100])),
-                      contentPadding:
-                      EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
+                  ),
                   style: TextStyle(color: Colors.grey),
                   obscureText: _isHidden,
                   controller: minhaSenha1,
@@ -213,7 +215,8 @@ class _Validator_loginState extends State<Validator_login> {
     );
   }
 
-
+  
+  
   String _validarCpf(value) {
     String patttern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(patttern);

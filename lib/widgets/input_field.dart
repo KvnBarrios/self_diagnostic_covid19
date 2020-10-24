@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,8 +10,8 @@ class InputField extends StatelessWidget {
   final TextInputType Type;
   final int max;
   final Function validador;
-
-  InputField({this.icon, this.hint, this.obscure, this.Type, this.max, this.validador});
+  final double size;
+  InputField({this.icon, this.hint, this.obscure, this.Type, this.max, this.validador, this.size});
 
 
 
@@ -17,7 +19,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      margin: EdgeInsets.only(top: 0, left: 30, right: 30, bottom: 0),
+      margin: EdgeInsets.only(top: 10, left: 20, right: 30, bottom: 0),
       child: TextFormField(
         inputFormatters: <TextInputFormatter>[
           WhitelistingTextInputFormatter.digitsOnly
@@ -28,7 +30,7 @@ class InputField extends StatelessWidget {
         decoration: InputDecoration(
             icon: Icon(icon, color: Colors.blueGrey),
             hintText: hint,
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: TextStyle(color: Colors.grey, fontSize: size),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey[100])),
             enabledBorder: UnderlineInputBorder(
@@ -39,8 +41,10 @@ class InputField extends StatelessWidget {
         obscureText: obscure,
         keyboardType: Type,
         validator: validador,
-      ),
-    );
+        ),
+      );
   }
 }
+
+
 

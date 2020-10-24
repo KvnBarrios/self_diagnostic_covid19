@@ -436,73 +436,75 @@ class _WorkerFormState extends State<WorkerForm> {
                                         .of(context)
                                         .size
                                         .width * (0.8),
-                                    child: Material(
-                                      type: MaterialType.card,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              25)),
-                                      elevation: Theme
-                                          .of(context)
-                                          .dialogTheme
-                                          .elevation ?? 24.0,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.vertical,
-                                        child: Column(
-                                          children: <Widget>[
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  left: 25, right: 25),
-                                              child: Image.asset(
-                                                  "images/thumbs-up.gif"),
-                                            ),
-                                            Text(
-                                              'Olá, Kevin! Seu diagnóstico esta pendente!',
-                                              style: TextStyle(
-                                                fontSize: 22.0,
-                                                fontWeight: FontWeight.w600,),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            VerificaSintoma(),
-                                            SizedBox(height: 30,),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.min,
+                                    child: Center(
+                                      child: Material(
+                                        type: MaterialType.card,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                25)),
+                                        elevation: Theme
+                                            .of(context)
+                                            .dialogTheme
+                                            .elevation ?? 24.0,
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.vertical,
+                                          child: Column(
+                                            children: <Widget>[
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 25, right: 25),
+                                                child: Image.asset(
+                                                    "images/thumbs-up.gif"),
+                                              ),
+                                              Text(
+                                                'Olá, Kevin! Seu diagnóstico esta pendente!',
+                                                style: TextStyle(
+                                                  fontSize: 22.0,
+                                                  fontWeight: FontWeight.w600,),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              VerificaSintoma(),
+                                              //SizedBox(height: MediaQuery.of(context).size.height*0.25),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
 
-                                              children: <Widget>[
-                                                RaisedButton(
-                                                  color: Colors.red,
-                                                  onPressed: (){
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  shape: RoundedRectangleBorder(
+                                                children: <Widget>[
+                                                  RaisedButton(
+                                                    color: Colors.red,
+                                                    onPressed: (){
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(9.0),
+                                                    ),
+                                                    child: Text('Editar', style: TextStyle(fontSize: 15, color: Colors.white)),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 30,
+                                                  ),
+                                                  RaisedButton(
+                                                    color: Colors.green,
+                                                    onPressed: (){
+                                                      reset();
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MenuWorker()));
+                                                    },
+                                                    shape: RoundedRectangleBorder(
                                                       borderRadius: BorderRadius.circular(9.0),
-                                                  ),
-                                                  child: Text('Editar', style: TextStyle(fontSize: 15, color: Colors.white)),
-                                                ),
-                                                SizedBox(
-                                                  width: 30,
-                                                ),
-                                                RaisedButton(
-                                                  color: Colors.green,
-                                                  onPressed: (){
-                                                    reset();
-                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MenuWorker()));
-                                                  },
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(9.0),
-                                                  ),
-                                                  child: Text('Confirmar', style: TextStyle(fontSize: 15,color: Colors.white)),
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                                    ),
+                                                    child: Text('Confirmar', style: TextStyle(fontSize: 15,color: Colors.white)),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
 
+                                          ),
                                         ),
                                       ),
                                     ),

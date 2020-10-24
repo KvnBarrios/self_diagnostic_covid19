@@ -84,7 +84,7 @@ class _ValidatorState extends State<Validator> {
                 bottomRight: Radius.circular(40.0))),
         child: Center(
           child: Container(
-            margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
+            margin: EdgeInsets.only(top: 10, left: 20, right: 10, bottom: 0),
             child: TextFormField(
               buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
@@ -107,8 +107,7 @@ class _ValidatorState extends State<Validator> {
                       borderSide: BorderSide(color: Colors.grey[100])),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey[100])),
-                  contentPadding:
-                      EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
+                 ),
               style: TextStyle(color: Colors.grey),
               obscureText: _isHidden,
               keyboardType: TextInputType.phone,
@@ -136,7 +135,7 @@ class _ValidatorState extends State<Validator> {
                 bottomRight: Radius.circular(40.0))),
         child: Center(
           child: Container(
-            margin: EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 0),
+            margin: EdgeInsets.only(top: 10, left: 20, right: 10, bottom: 0),
             child: TextFormField(
               buildCounter: (BuildContext context,
                       {int currentLength, int maxLength, bool isFocused}) =>
@@ -159,8 +158,7 @@ class _ValidatorState extends State<Validator> {
                       borderSide: BorderSide(color: Colors.grey[100])),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey[100])),
-                  contentPadding:
-                      EdgeInsets.only(left: 5, right: 10, bottom: 10, top: 5)),
+                  ),
               style: TextStyle(color: Colors.grey),
               obscureText: _isHidden2,
               keyboardType: TextInputType.phone,
@@ -216,9 +214,9 @@ class _ValidatorState extends State<Validator> {
     if (value.length == 0) {
       return "Informe o CPF";
     } else if (value.length != 11) {
-      return "O CPF deve conter 11 dígitos";
+      return "CPF detém 11 digitos";
     } else if (!regExp.hasMatch(value)) {
-      return "O CPF só deve conter dígitos";
+      return "Somente digitos";
     }
     if (CPFValidator.isValid(value) == false) {
       return "CPF Inválido";
@@ -242,6 +240,7 @@ class _ValidatorState extends State<Validator> {
           textAlign: TextAlign.center,
         ),
         entryAnimation: EntryAnimation.TOP,
+        onlyOkButton: true,
         onOkButtonPressed: () {
           Navigator.push(
             context,
